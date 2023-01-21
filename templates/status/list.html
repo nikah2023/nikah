@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "statuss" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "statuss" %}</h2>
+<a href="{% url 'status_create'%}">{% trans "Add" %}</a>
+{% if status.count > 0 %}
+<div class="row">
+	<table id="myTable" style="width:100%">
+		<thead>
+			<tr>
+				<th></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for n in status %}
+			<tr>
+				<td>
+					<div class="card">
+						<div class="card-header">
+							<h5>{{  n.dates | date:"d.m.Y H:i" }}</h5>							
+						</div>
+						<div class="card-body">					
+							<p>{{ n.title }}</p>							
+						</div>
+						<div class="card-footer text-muted">
+							<a onclick="return confirm('Удалить запись?')" href="{% url 'status_delete' n.id %}">{% trans "Delete" %}</a>
+						</div>
+					</div>
+				</td>	
+			</tr>
+			{% endfor %}	
+		</tbody>
+	</table>	
+</div>
+{% endif %}
+{% endblock content %}
+

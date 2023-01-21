@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "App name" %}{% endblock title %}
+{% block header %}
+	
+{% endblock header %}
+{% block content %}
+<div class="jumbotron">
+	<div class="row justify-content-center;">
+		<div class="row" >
+			<div class="col-md-8" >	
+				<h1>Приветствие</h1>
+				<hr>
+				<h3>...</h3> 
+				<hr>
+				<p>✅ ...</p>
+				<p>✅ ...</p>
+				<p>✅ ...</p>
+				<p>✅ ...</p>
+				<p>✅ ...</p>
+			</div>								
+			<div class="col-md-4">
+				<img src="{% static 'images/jumbotron.jpg' %}" alt="student" style="width:100%; padding: 10px;">
+			</div>
+		</div>			
+	</div>
+</div>
+<div class="div-button-left">
+	<button onclick="" class="btn btn-outline-info">{% trans "claim create" %}</button>	
+</div>
+<hr>
+<div class="div-width-100-text-center">
+	<h3>{% trans "Person" %}</h3>
+</div>
+<div class="person">
+	<div class="row">
+		{% if person.count > 0 %}
+			{% for c in person %}
+			<div class="col-lg-3 border" style="padding:10px;">
+				{% if c.avatar.url != None %}
+					<img class="img-center" src="{{ c.avatar.url}}" alt="" title="">
+				{% elif c.sex == 'М' %}
+					<img class="img-center" src="{% static 'images/male.png' %}" alt="" title="">
+				{% elif c.sex == 'Ж' %}
+					<img class="img-center" src="{% static 'images/woman.png' %}" alt="" title="">
+				{% endif %}
+				<h5><a href="{% url 'person_read' c.id %}">{{ c.user.first_name }}</a></h5>
+			</div>
+			{% endfor %}
+		{% endif %}						
+	</div>	
+	<div class="row">
+		<h3 style="text-align: center;"><a href="{% url 'person_list'%}">{% trans "Person" %}</a></h3>
+	</div>	
+</div>
+
+
+{% endblock content %}

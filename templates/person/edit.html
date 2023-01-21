@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Change" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "Person" %}</h2>
+<h3>{{ my_person.user.first_name }} {{ my_person.user.last_name }}</h3>
+<h4>{{ my_person.user.username }}</h4>
+<h4>{{ my_person.user.email }}</h4>
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+	<br>
+    <button type="submit" class="btn btn-outline-success" style="width:100px">{% trans "Save" %}</button>
+	<a class="btn btn-outline-info" style="width:100px" href="{% url 'index' %}">{% trans "Back" %}</a>    
+</form>
+<hr>
+<h2>{% trans "statuss" %}</h2>
+{% if status.count > 0 %}
+<div class="row">
+	<table id="myTable" style="width:100%">
+		<thead>
+			<tr>
+				<th><a href="{% url 'status_create'%}">{% trans "Add" %}</a></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for n in status %}
+			<tr>
+				<td>
+					<div class="card">
+						<div class="card-header">
+							<h5>{{  n.dates | date:"d.m.Y H:i" }}</h5>							
+						</div>
+						<div class="card-body">					
+							<p>{{ n.title }}</p>							
+						</div>
+						<div class="card-footer text-muted">
+							<a onclick="return confirm('Удалить запись?')" href="{% url 'status_delete' n.id %}">{% trans "Delete" %}</a>
+						</div>
+					</div>
+				</td>	
+			</tr>
+			{% endfor %}	
+		</tbody>
+	</table>	
+</div>
+{% else %}
+<a href="{% url 'status_create'%}">{% trans "Add" %}</a>
+{% endif %}
+
+{% endblock content %}

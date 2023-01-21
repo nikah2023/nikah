@@ -1,0 +1,39 @@
+{% extends "manager.html" %}
+{% load i18n %}
+{% block title %}{% trans "statuss" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "statuss" %}</h2>
+{% if status.count > 0 %}
+<div class="row">
+	<table id="myTable" class="cell-border hover stripe" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "dates" %}</th>
+				<th>{% trans "person" %}</th>
+				<th>{% trans "title" %}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for n in status %}
+			<tr>
+				<td>
+					<p>{{ n.dates | date:"d.m.Y H:i" }}</p>	
+				</td>
+				<td>
+					<p><strong>{{ n.person.user.first_name }} {{ n.person.user.last_name }}</strong></p>						
+					<p>{{ n.person.user }}</p>		
+				</td>
+				<td>
+					<p>{{ n.title }}</p>	
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<!-- <a href="{% url 'status_create'%}">{% trans "Add" %}</a> -->
+{% endif %}
+{% endblock content %}
+

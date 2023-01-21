@@ -1,0 +1,50 @@
+{% extends "manager.html" %}
+{% load i18n %}
+{% block title %}{% trans "persons" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "persons" %}</h2>
+{% if person.count > 0 %}
+<div class="row">
+	<table id="myTable" class="cell-border hover stripe" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "user" %}</th>
+				<th>{% trans "fio" %}</th>
+				<th>{% trans "sex" %}</th>
+				<th>{% trans "birthday" %}</th>
+				<th>{% trans "city" %}</th>
+				<th></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for n in person %}
+			<tr>
+				<td>
+					<p>{{ n.user }}</p>	
+				</td>
+				<td>
+					<p>{{ n.user.first_name }} {{ n.user.last_name }}</p>	
+				</td>
+				<td>
+					<p>{{ n.sex }}</p>	
+				</td>
+				<td>
+					<p>{{ n.birthday | date:"d.m.Y"}}</p>	
+				</td>
+				<td>
+					<p>{{ n.city }}</p>	
+				</td>
+				<td>
+					<a href="{% url 'person_read' n.id %}">{% trans "View" %}</a> 
+				</td>			
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<!-- <a href="{% url 'person_create'%}">{% trans "Add" %}</a> -->
+{% endif %}
+{% endblock content %}
+

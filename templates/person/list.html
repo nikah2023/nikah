@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "persons" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "persons" %}</h2>
+{% if person.count > 0 %}
+<div class="row">
+	<table id="myTable" style="width:100%">
+		<thead>
+			<tr>
+				<th></th>				
+			</tr>
+		</thead>
+		<tbody>
+			{% for n in person %}
+			<tr>
+				<td>
+					<div class="card">
+						<div class="card-header">
+							<h4><a href="{% url 'person_read' n.id %}"> {{ n.user.first_name }}</a></h4>							
+						</div>
+						<div class="card-body">					
+							<div class="row">
+								<div class="col-md-9">
+									<h5><strong>{% trans "country" %}:</strong> {{ n.country }}</h5>
+									<h5><strong>{% trans "city" %}:</strong> {{ n.city }}</h5>									
+								</div>								
+								<div class="col-md-3">
+									{% if n.avatar.url != None %}
+										<img style="width:100%; max-width:400px;" src="{{ n.avatar.url}}" alt="" title="">
+									{% elif n.sex == 'М' %}
+										<img style="width:100%; max-width:400px;" src="{% static 'images/male.png' %}" alt="" title="">
+									{% elif n.sex == 'Ж' %}
+										<img style="width:100%; max-width:400px;" src="{% static 'images/woman.png' %}" alt="" title="">
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="card-footer text-muted">
+							{% if friend.count > 0 %}
+								{% for f in friend %}
+									{% if f.person_id == n.id or f.amigo_id == n.id %}
+										{% if f.confirmation == True %}
+											<p>{% trans "You are friends" %}<p>
+										{% else %}
+											<p>{% trans "Unverified friend" %}<p>
+										{% endif %}
+									{% endif %}									
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+				</td>	
+			</tr>
+			{% endfor %}	
+		</tbody>
+	</table>	
+</div>
+{% endif %}
+{% endblock content %}
+
