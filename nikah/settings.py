@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-+5taun4hopo%nbb9!=3u56e55hdffa=fcgzpbmeu7vmq1^l_*(
 DEBUG = True
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nikah.onrender.com',]
+ALLOWED_HOSTS = ['127.0.0.1', 'nikah-knf6.onrender.com',]
 
 # Application definition
 
