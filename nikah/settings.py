@@ -31,6 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'nikah-knf6.onrender.com',]
 
+CSRF_TRUSTED_ORIGINS=["https://nikah-knf6.onrender.com"] 
+
 # Application definition
 
 INSTALLED_APPS = [
