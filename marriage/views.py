@@ -235,7 +235,7 @@ def signup(request):
             person = Person.objects.all().order_by("-id")[0]
             #print(person)
             #print(person.id)            
-            return redirect('person_edit', id=person.id)
+            return redirect('person_edit')
             return redirect('index')
             #return render(request, 'registration/register_done.html', {'new_user': user})
     else:
