@@ -210,6 +210,46 @@ def beginning(apps, schema_editor):
 
     print("Созданы статусы")
 
+    ##### Друзья #####
+    Friend = apps.get_model("marriage", "Friend")
+    
+    friend = Friend()
+    friend.datef = '2023-01-30 00:00:00'
+    friend.confirmation = True
+    friend.person_id = 1
+    friend.amigo_id = 2    
+    friend.save()
+    
+    friend = Friend()
+    friend.datef = '2023-01-30 00:00:00'
+    friend.confirmation = False
+    friend.person_id = 1
+    friend.amigo_id = 5    
+    friend.save()
+
+    friend = Friend()
+    friend.datef = '2023-01-30 00:00:00'
+    friend.confirmation = True
+    friend.person_id = 2
+    friend.amigo_id = 6    
+    friend.save()
+
+    friend = Friend()
+    friend.datef = '2023-01-30 00:00:00'
+    friend.confirmation = True
+    friend.person_id = 3
+    friend.amigo_id = 7    
+    friend.save()
+
+    friend = Friend()
+    friend.datef = '2023-01-30 00:00:00'
+    friend.confirmation = True
+    friend.person_id = 3
+    friend.amigo_id = 8    
+    friend.save()
+
+    print("Созданы друзья")
+
     ##### Сообщения #####
     Message = apps.get_model("marriage", "Message")
     

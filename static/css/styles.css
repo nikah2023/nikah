@@ -1,7 +1,7 @@
 /* Переменные */
 :root {	
 	/* Основные цвета */
-	--navbar-background-color: DarkMagenta;
+	--navbar-background-color: MediumOrchid;
 	--main-background-color-light: Thistle;
 	--main-background-color-dark: Plum;
 	--main-text-color: DarkMagenta;
@@ -10,8 +10,8 @@
 	--footer-background-color-light: Fuchsia;
 	--footer-background-color-dark: MediumPurple;
 	--footer-text-color: Gold;
-	--card-background-color-light: Plum;
-	--card-background-color-dark: MediumOrchid;
+	--card-background-color-light: Thistle;
+	--card-background-color-dark: Plum;
 	--card-text-color: Gold;
 	--table-background-color-light: LightCyan; 
 	--table-background-color-dark: PaleTurquoise; 

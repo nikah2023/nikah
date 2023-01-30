@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "friends" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+<h2>{% trans "friends" %}</h2>
+{% if friend.count > 0 %}
+<div class="row">
+	<table id="myTable" class="table-manager" style="width:100%">
+		<thead>
+			<tr>
+				<th>{% trans "datef" %}</th>
+				<th>{% trans "person" %}</th>
+				<th>{% trans "person" %}</th>
+				<th>{% trans "confirmation" %}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for n in friend %}
+			<tr>
+				<td>
+					<p>{{ n.datef | date:"d.m.Y H:i" }}</p>
+				</td>
+				<td>
+					<p><strong>{{ n.person.user.first_name }} {{ n.person.user.last_name }}</strong></p>						
+					<p>{{ n.person.user }}</p>						
+				</td>
+				<td>
+					<p><strong>{{ n.amigo.user.first_name }} {{ n.amigo.user.last_name }}</strong></p>
+					<p>{{ n.amigo.user }}</p>						
+				</td>
+				<td>
+					<p>{{ n.confirmation }}</p>						
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<a href="{% url 'friend_create'%}">{% trans "Create" %}</a>
+{% endif %}
+{% endblock content %}
+

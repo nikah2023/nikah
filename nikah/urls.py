@@ -35,6 +35,14 @@ urlpatterns = [
     
     path('message/index/', views.message_index, name='message_index'),
 
+    path('friend/index/', views.friend_index, name='friend_index'),
+    path('friend/list/', views.friend_list, name='friend_list'),
+    path('friend/create/<int:id>/', views.friend_create, name='friend_create'),
+    path('friend/confirm/<int:id>/', views.friend_confirm, name='friend_confirm'),
+    #path('friend/edit/<int:id>/', views.friend_edit, name='friend_edit'),
+    #path('friend/delete/<int:id>/', views.friend_delete, name='friend_delete'),
+    #path('friend/read/<int:id>/', views.friend_read, name='friend_read'),
+    
     #path('photo/index/', views.photo_index, name='photo_index'),
     #path('photo/list/', views.photo_list, name='photo_list'),
     #path('photo/create/', views.photo_create, name='photo_create'),

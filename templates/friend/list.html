@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "friends" %}{% endblock title %}
+{% block header %}{% endblock header %}
+{% block content %}
+	<h2>{% trans "friends" %}</h2>
+	<table id="myTable" class="table-projects" >
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if friend.count > 0 %}
+			{% for n in friend %}
+			<tr>
+				{% if n.person_id == my_id %} 	
+				<td>
+					{% if n.amigo.avatar.url != None %}
+						<img style="width:100%; max-width:200px;" src="{{ n.amigo.avatar.url}}" alt="" title=""> 
+					{% elif n.amigo.sex == 'М' %}
+						<img style="width:100%; max-width:200px;" src="{% static 'images/male.jpg' %}" alt="" title="">
+					{% elif n.amigo.sex == 'Ж' %}
+						<img style="width:100%; max-width:200px;" src="{% static 'images/woman.jpg' %}" alt="" title="">
+					{% endif %}						
+				</td>
+				<td>
+					<h5> <a href="{% url 'person_read' n.amigo_id %}"> {{ n.amigo }}</a>
+						{% if n.confirmation != True %} 	
+							{% trans "Waiting for confirmation" %}
+						{% endif %}
+					</h5>
+						
+				</td>	
+				{% else %}
+				<td>
+					{% if n.person.avatar.url != None %}
+						<img style="width:100%; max-width:200px;" src="{{ n.person.avatar.url}}" alt="" title=""> 
+					{% elif n.person.sex == 'М' %}
+						<img style="width:100%; max-width:200px;" src="{% static 'images/male.jpg' %}" alt="" title="">
+					{% elif n.person.sex == 'Ж' %}
+						<img style="width:100%; max-width:200px;" src="{% static 'images/woman.jpg' %}" alt="" title="">
+					{% endif %}							
+				</td>
+				<td>
+					<h5><a href="{% url 'person_read' n.person_id %}"> {{ n.person }}</a>
+						{% if n.confirmation != True %} 
+							<a onclick="return confirm('{% trans "Confirm Friendship" %}?')" href="{% url 'friend_confirm' n.id %}">{% trans "Confirm Friendship" %}</a>
+						{% endif %}	
+					</h5>										
+				</td>								
+				{% endif %}
+			</tr>
+			{% endfor %}
+		{% endif %}			
+		</tbody>
+	</table>
+
+	
+{% endblock content %}
+

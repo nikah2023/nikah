@@ -31,7 +31,7 @@
 </div>
 <hr>
 <div class="div-width-100-text-center">
-	<h3>{% trans "Person" %}</h3>
+	<h3 style="text-align: center;"><a href="{% url 'person_list'%}">{% trans "Person" %}</a></h3>
 </div>
 <div class="person">
 	<div class="row">
@@ -41,19 +41,14 @@
 				{% if c.avatar.url != None %}
 					<img class="img-center" src="{{ c.avatar.url}}" alt="" title="">
 				{% elif c.sex == 'М' %}
-					<img class="img-center" src="{% static 'images/male.png' %}" alt="" title="">
+					<img class="img-center" src="{% static 'images/male.jpg' %}" alt="" title="">
 				{% elif c.sex == 'Ж' %}
-					<img class="img-center" src="{% static 'images/woman.png' %}" alt="" title="">
+					<img class="img-center" src="{% static 'images/woman.jpg' %}" alt="" title="">
 				{% endif %}
 				<h5><a href="{% url 'person_read' c.id %}">{{ c.user.first_name }}</a></h5>
 			</div>
 			{% endfor %}
 		{% endif %}						
 	</div>	
-	<div class="row">
-		<h3 style="text-align: center;"><a href="{% url 'person_list'%}">{% trans "Person" %}</a></h3>
-	</div>	
 </div>
-
-
 {% endblock content %}

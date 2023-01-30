@@ -19,7 +19,18 @@
 				<td>
 					<div class="card">
 						<div class="card-header">
-							<h4><a href="{% url 'person_read' n.id %}"> {{ n.user.first_name }}</a></h4>							
+							<h4><a href="{% url 'person_read' n.id %}"> {{ n.user.first_name }}</a></h4>	
+							{% if friend.count > 0 %}
+								{% for f in friend %}
+									{% if f.person_id == n.id or f.amigo_id == n.id %}
+										{% if f.confirmation == True %}
+											<h5>{% trans "You are friends" %}</h5>
+										{% else %}
+											<h5>{% trans "Unverified friend" %}</h5>
+										{% endif %}
+									{% endif %}									
+								{% endfor %}
+							{% endif %}							
 						</div>
 						<div class="card-body">					
 							<div class="row">
@@ -31,25 +42,15 @@
 									{% if n.avatar.url != None %}
 										<img style="width:100%; max-width:400px;" src="{{ n.avatar.url}}" alt="" title="">
 									{% elif n.sex == 'М' %}
-										<img style="width:100%; max-width:400px;" src="{% static 'images/male.png' %}" alt="" title="">
+										<img style="width:100%; max-width:400px;" src="{% static 'images/male.jpg' %}" alt="" title="">
 									{% elif n.sex == 'Ж' %}
-										<img style="width:100%; max-width:400px;" src="{% static 'images/woman.png' %}" alt="" title="">
+										<img style="width:100%; max-width:400px;" src="{% static 'images/woman.jpg' %}" alt="" title="">
 									{% endif %}
 								</div>
 							</div>
 						</div>
 						<div class="card-footer text-muted">
-							{% if friend.count > 0 %}
-								{% for f in friend %}
-									{% if f.person_id == n.id or f.amigo_id == n.id %}
-										{% if f.confirmation == True %}
-											<p>{% trans "You are friends" %}<p>
-										{% else %}
-											<p>{% trans "Unverified friend" %}<p>
-										{% endif %}
-									{% endif %}									
-								{% endfor %}
-							{% endif %}
+							
 						</div>
 					</div>
 				</td>	

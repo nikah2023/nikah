@@ -62,9 +62,9 @@
 					{% if person.avatar.url != None %}
 						<img style="width:100%; max-width:400px;" src="{{ person.avatar.url}}" alt="" title="">
 					{% elif person.sex == 'М' %}
-						<img style="width:100%; max-width:400px;" src="{% static 'images/male.png' %}" alt="" title="">
+						<img style="width:100%; max-width:400px;" src="{% static 'images/male.jpg' %}" alt="" title="">
 					{% elif person.sex == 'Ж' %}
-						<img style="width:100%; max-width:400px;" src="{% static 'images/woman.png' %}" alt="" title="">
+						<img style="width:100%; max-width:400px;" src="{% static 'images/woman.jpg' %}" alt="" title="">
 					{% endif %}
 					<h5>{{ my_status.title }}</h5>
 				</div>

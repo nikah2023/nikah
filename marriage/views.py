@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from sched import scheduler
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -19,7 +20,7 @@ from django.db import models
 from django.db.models import Q
 
 # Подключение моделей
-from .models import Person, Photo, Status, Message
+from .models import Person, Photo, Friend, Status, Message
 # Подключение форм
 from .forms import PersonForm, StatusForm, PhotoForm, SignUpForm
 
@@ -56,12 +57,32 @@ def cabinet(request):
 
 # Список для просмотра
 def person_list(request):
-    # Из списка исключить
-    if (request.user.id is None) or (request.user.person.id) is None:
-        person = Person.objects.all().order_by('user_id')
+    my_person = None
+    my_status = None
+    friend = None
+    # Если это анонимный пользователь
+    if request.user == AnonymousUser():
+        person = Person.objects.all().order_by('?')
     else:
-        person = Person.objects.exclude(id=request.user.person.id).order_by('user_id')
-    return render(request, "person/list.html", {"person": person})
+        # Если это пользователь которого нет в связанной таблице Person
+        try:
+            persons = Person.objects.get(user_id=request.user.id) 
+        except Person.DoesNotExist:
+            persons = None
+        if (persons is None):
+            person = Person.objects.all().order_by('user_id')
+        else:
+            # Себя в списке не показывать
+            person_id = request.user.person.id
+            person = Person.objects.exclude(id=person_id).order_by('?')
+            friend = Friend.objects.filter(Q(person_id=person_id) | Q(amigo_id=person_id))
+            my_person = request.user.person
+            my_status = Status.objects.filter(person_id=request.user.person.id).order_by('-dates').first()     
+            # Все друзья    
+            #friends_query = Friend.objects.all()
+            # Люди которые не с кем не дружат
+            #person_not_friends = Person.objects.exclude(id__in=friends_query)
+    return render(request, "person/list.html", {"person": person, "my_person": my_person, "my_status": my_status, "friend": friend, })
 
 # Функция edit выполняет редактирование объекта.
 # Функция в качестве параметра принимает идентификатор объекта в базе данных.
@@ -114,22 +135,22 @@ def person_edit(request):
 # Просмотр страницы read.html для просмотра объекта.
 @login_required
 def person_read(request, id):
+    # id текущего пользователя
     # id user текущего пользователя
     my_user_id = request.user.id
+    my_person_id = request.user.person.id
     try:
         person = Person.objects.get(id=id)
         # id пользователя котрому отправляется сообщение
         person_user_id = person.user.id    
-        #my_friend = Friend.objects.filter(Q(confirmation=True), Q(person_id=my_id) | Q(amigo_id=my_id))        
-        #friend = Friend.objects.filter(Q(confirmation=True), Q(person_id=id) | Q(amigo_id=id))
+        my_friend = Friend.objects.filter(Q(confirmation=True), Q(person_id=my_person_id) | Q(amigo_id=my_person_id))  
+        is_my_friend = Friend.objects.filter(Q(person_id=my_person_id) , Q(amigo_id=id)) | Friend.objects.filter( Q(person_id=id) , Q(amigo_id=my_person_id))  
+        print("is_my_friend", is_my_friend)
+        friend = Friend.objects.filter(Q(confirmation=True), Q(person_id=id) | Q(amigo_id=id))
         status = Status.objects.filter(person_id=id).order_by('-dates')
         status_last = Status.objects.filter(person_id=id).order_by('-dates').first()
         photo = Photo.objects.filter(person_id=id).order_by('-datep')
         message = Message.objects.filter(Q(sender_id=my_user_id) | Q(recipient_id=my_user_id)).filter(Q(sender_id=person_user_id) | Q(recipient_id=person_user_id)).order_by('-datem')
-        #print(id)
-        #print(my_user_id)
-        #print(person_user_id)
-        #print(message)
         if request.method == "POST":
             mes = Message()
             mes.sender_id = my_user_id
@@ -138,9 +159,46 @@ def person_read(request, id):
             mes.save()
             return HttpResponseRedirect(reverse('person_read', args=(id,)))
         else:
-            return render(request, "person/read.html", {"person": person,  "status_last": status_last, "message": message, "status": status, "photo": photo, "my_user_id": my_user_id, "person_user_id": person_user_id })
+            print("id", id)
+            print("my_person_id", my_person_id)
+            return render(request, "person/read.html", {"person": person,  "status_last": status_last, "message": message, "status": status, "photo": photo, "my_user_id": my_user_id, "my_person_id":  my_person_id, "person_id": id,"friend": friend, "my_friend": my_friend, "is_my_friend": is_my_friend })
+            #return render(request, "person/read.html", {"person": person, "my_person": my_person, "my_status": my_status, "status_last": status_last, "message": message, "friend": friend, "my_friend": my_friend, "status": status, "photo": photo, "my_id": my_id, "person_id": id })
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
+
+# Список для изменения с кнопками создать, изменить, удалить
+@login_required
+@group_required("Managers")
+def friend_index(request):
+    friend = Friend.objects.all().order_by('-datef')
+    return render(request, "friend/index.html", {"friend": friend})
+
+# Список для просмотра
+@login_required
+def friend_list(request):
+    # id текущего пользователя
+    my_id = request.user.person.id
+    my_person = request.user.person
+    my_status = Status.objects.filter(person_id=request.user.person.id).order_by('-dates').first() 
+    # Друзья текущего пользователя
+    friend = Friend.objects.filter(Q(person_id=my_id) | Q(amigo_id=my_id))
+    return render(request, "friend/list.html", {"friend": friend, "my_id": my_id, "my_person": my_person, "my_status": my_status})
+
+# Подтверждение дружбы
+@login_required
+def friend_confirm(request, id):
+    friend = Friend.objects.get(id=id)
+    friend.confirmation = True
+    friend.save()
+    return HttpResponseRedirect(reverse('friend_list'))
+
+@login_required
+def friend_create(request, id):
+    friend = Friend()
+    friend.person_id = request.user.person.id
+    friend.amigo_id = id
+    friend.save()
+    return HttpResponseRedirect(reverse('person_list'))
 
 # Список для изменения с кнопками создать, изменить, удалить
 @login_required

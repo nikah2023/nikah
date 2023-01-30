@@ -93,22 +93,22 @@ class Photo(models.Model):
         # Сортировка по умолчанию
         ordering = ['-datep']        
 
-## Друзья
-#class Friend(models.Model):
-#    datef = models.DateTimeField(_('datef'), auto_now_add=True)
-#    confirmation = models.BooleanField(_('confirmation'), default = False)
-#    person = models.ForeignKey(Person, related_name='friend_person', on_delete=models.CASCADE)
-#    amigo = models.ForeignKey(Person, related_name='amigo_person', on_delete=models.CASCADE)
-#    class Meta:
-#        # Параметры модели
-#        # Переопределение имени таблицы
-#        db_table = 'friend'
-#        # indexes - список индексов, которые необходимо определить в модели
-#        indexes = [
-#            models.Index(fields=['person']),
-#        ]
-#        # Сортировка по умолчанию
-#        #ordering = ['-datep']  
+# Друзья
+class Friend(models.Model):
+    datef = models.DateTimeField(_('datef'), auto_now_add=True)
+    confirmation = models.BooleanField(_('confirmation'), default = False)
+    person = models.ForeignKey(Person, related_name='friend_person', on_delete=models.CASCADE)
+    amigo = models.ForeignKey(Person, related_name='amigo_person', on_delete=models.CASCADE)
+    class Meta:
+        # Параметры модели
+        # Переопределение имени таблицы
+        db_table = 'friend'
+        # indexes - список индексов, которые необходимо определить в модели
+        indexes = [
+            models.Index(fields=['person']),
+        ]
+        # Сортировка по умолчанию
+        #ordering = ['-datep']  
 
 # Статус
 class Status(models.Model):
