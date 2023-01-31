@@ -12,7 +12,79 @@
     <table>
         {{ form }}
     </table>
-	<br>
+	<br>	
+	<datalist id="nationality_datalist">
+		{% if nationality_list.count > 0 %}
+			{% for n in nationality_list %}
+				{% if n.nationality != None %}
+					<option>{{ n.nationality }}</option>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="marital_status_datalist">
+		{% if marital_status_list.count > 0 %}
+			{% for n in marital_status_list %}
+				{% if n.marital_status != None %}
+					<option>{{ n.marital_status }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="country_datalist">
+		{% if country_list.count > 0 %}
+			{% for n in country_list %}
+				{% if n.country != None %}
+					<option>{{ n.country }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="city_datalist">
+		{% if city_list.count > 0 %}
+			{% for n in city_list %}
+				{% if n.city != None %}
+					<option>{{ n.city }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="education_datalist">
+		{% if education_list.count > 0 %}
+			{% for n in education_list %}
+				{% if n.education != None %}
+					<option>{{ n.education }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="eye_color_datalist">
+		{% if eye_color_list.count > 0 %}
+			{% for n in eye_color_list %}
+				{% if n.eye_color != None %}
+					<option>{{ n.eye_color }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="hair_color_datalist">
+		{% if hair_color_list.count > 0 %}
+			{% for n in hair_color_list %}
+				{% if n.hair_color != None %}
+					<option>{{ n.hair_color }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
+	<datalist id="body_type_datalist">
+		{% if body_type_list.count > 0 %}
+			{% for n in body_type_list %}
+				{% if n.body_type != None %}
+					<option>{{ n.body_type }}</option>
+				{% endif %}	
+			{% endfor %}
+		{% endif %}
+	</datalist>
     <button type="submit" class="btn btn-outline-success" style="width:100px">{% trans "Save" %}</button>
 	<a class="btn btn-outline-info" style="width:100px" href="{% url 'index' %}">{% trans "Back" %}</a>    
 </form>

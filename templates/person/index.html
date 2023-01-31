@@ -1,4 +1,4 @@
-{% extends "manager.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% block title %}{% trans "persons" %}{% endblock title %}
 {% block header %}{% endblock header %}
@@ -21,10 +21,14 @@
 			{% for n in person %}
 			<tr>
 				<td>
-					<p>{{ n.user }}</p>	
+					<p>{{ n.user }}</p>						
 				</td>
 				<td>
-					<p>{{ n.user.first_name }} {{ n.user.last_name }}</p>	
+					<p>{{ n.user.first_name }} {{ n.user.last_name }}</p>
+					<p><strong>{% trans "okay" %}</strong>: {{ n.okay }}</p>
+					{% if n.okay == False %}		
+						<p><a onclick="return confirm('{% trans "okay" %}?')" href="{% url 'person_okay' n.id %}">{% trans "person_okay" %}</a></p>
+					{% endif %}
 				</td>
 				<td>
 					<p>{{ n.sex }}</p>	

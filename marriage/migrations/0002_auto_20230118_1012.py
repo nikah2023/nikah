@@ -51,9 +51,12 @@ def beginning(apps, schema_editor):
     person.marital_status = "Не замужем"
     person.country = "Казахстан"
     person.city = "Алматы"
-    person.amount_of_children = 0    
+    person.amount_of_children = 0   
+    person.eye_color = "Карие"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0    
+    person.weight = 0   
+    person.okay = True
     person.save()
 
     person = Person()
@@ -65,8 +68,11 @@ def beginning(apps, schema_editor):
     person.country = "Казахстан"
     person.city = "Астана"
     person.amount_of_children = 0  
+    person.eye_color = "Карие"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0
+    person.okay = True
     person.save()
 
     person = Person()
@@ -78,8 +84,11 @@ def beginning(apps, schema_editor):
     person.country = "Казахстан"
     person.city = "Алматы"
     person.amount_of_children = 0  
+    person.eye_color = "Карие"
+    person.hair_color = "Каштановые"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0 
+    person.okay = True
     person.save()
 
     person = Person()
@@ -89,10 +98,13 @@ def beginning(apps, schema_editor):
     person.nationality = "Казах"
     person.marital_status = "Холост"
     person.country = "Казахстан"
-    person.city = "Алматы"
+    person.city = "Караганда"
     person.amount_of_children = 0   
+    person.eye_color = "Карие"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0  
+    person.okay = True
     person.save()
 
     person = Person()
@@ -104,8 +116,11 @@ def beginning(apps, schema_editor):
     person.country = "Казахстан"
     person.city = "Алматы"
     person.amount_of_children = 0 
+    person.eye_color = "Зеленые"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0   
+    person.okay = True
     person.save()
 
     person = Person()
@@ -116,9 +131,12 @@ def beginning(apps, schema_editor):
     person.marital_status = "Холост"
     person.country = "Казахстан"
     person.city = "Астана"
-    person.amount_of_children = 0    
+    person.amount_of_children = 0   
+    person.eye_color = "Карие"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0    
+    person.okay = True
     person.save()
 
     person = Person()
@@ -128,10 +146,13 @@ def beginning(apps, schema_editor):
     person.nationality = "Казах"
     person.marital_status = "Холост"
     person.country = "Казахстан"
-    person.city = "Астана"
-    person.amount_of_children = 0    
+    person.city = "Семей"
+    person.amount_of_children = 0  
+    person.eye_color = "Карие"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0    
+    person.okay = True
     person.save()
     
     person = Person()
@@ -142,9 +163,12 @@ def beginning(apps, schema_editor):
     person.marital_status = "Не замужем"
     person.country = "Казахстан"
     person.city = "Астана"
-    person.amount_of_children = 0    
+    person.amount_of_children = 0 
+    person.eye_color = "Карие"
+    person.hair_color = "Черные"
     person.height = 0    
-    person.weight = 0        
+    person.weight = 0     
+    person.okay = True
     person.save()
     
     person = Person()
@@ -155,7 +179,9 @@ def beginning(apps, schema_editor):
     person.marital_status = "Не замужем"
     person.country = "Казахстан"
     person.city = "Алматы"
-    person.amount_of_children = 0   
+    person.amount_of_children = 0  
+    person.eye_color = "Зеленые"
+    person.hair_color = "Черные"
     person.height = 0    
     person.weight = 0        
     person.save()
@@ -168,7 +194,9 @@ def beginning(apps, schema_editor):
     person.marital_status = "Не замужем"
     person.country = "Казахстан"
     person.city = "Алматы"
-    person.amount_of_children = 0    
+    person.amount_of_children = 0  
+    person.eye_color = "Карие"
+    person.hair_color = "Каштановые"
     person.height = 0    
     person.weight = 0        
     person.save()

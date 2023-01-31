@@ -28,10 +28,12 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     
     path('cabinet/', views.cabinet, name='cabinet'),
+    path('person/index/', views.person_index, name='person_index'),
+    path('person/list/', views.person_list, name='person_list'),
     #path('person/edit/<int:id>/', views.person_edit, name='person_edit'),
     path('person/edit/', views.person_edit, name='person_edit'),
-    path('person/list/', views.person_list, name='person_list'),
     path('person/read/<int:id>/', views.person_read, name='person_read'),
+    path('person/okay/<int:id>/', views.person_okay, name='person_okay'),
     
     path('message/index/', views.message_index, name='message_index'),
 

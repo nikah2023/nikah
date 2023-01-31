@@ -40,7 +40,7 @@ def group_required(*group_names):
 
 # Стартовая страница 
 def index(request):
-    person = Person.objects.all().order_by('?')[0:4]   
+    person = Person.objects.filter(okay=True).order_by('?')[0:4]   
     return render(request, "index.html", {"person": person, })    
 
 # Контакты
@@ -54,6 +54,13 @@ def cabinet(request):
     my_status = Status.objects.filter(person_id=request.user.person.id).order_by('-dates').first()         
     return render(request, "cabinet.html", {"person": person, "my_status": my_status})
 
+# Список для изменения с кнопками создать, изменить, удалить
+@login_required
+@group_required("Managers")
+def person_index(request):
+    person = Person.objects.all().order_by('user')
+    return render(request, "person/index.html", {"person": person})
+
 # Список для просмотра
 def person_list(request):
     my_person = None
@@ -61,7 +68,7 @@ def person_list(request):
     friend = None
     # Если это анонимный пользователь
     if request.user == AnonymousUser():
-        person = Person.objects.all().order_by('?')
+        person = Person.objects.filter(okay=True).order_by('?')
     else:
         # Если это пользователь которого нет в связанной таблице Person
         try:
@@ -69,11 +76,11 @@ def person_list(request):
         except Person.DoesNotExist:
             persons = None
         if (persons is None):
-            person = Person.objects.all().order_by('user_id')
+            person = Person.objects.filter(okay=True).order_by('user_id')
         else:
             # Себя в списке не показывать
             person_id = request.user.person.id
-            person = Person.objects.exclude(id=person_id).order_by('?')
+            person = Person.objects.filter(okay=True).exclude(id=person_id).order_by('?')
             friend = Friend.objects.filter(Q(person_id=person_id) | Q(amigo_id=person_id))
             my_person = request.user.person
             my_status = Status.objects.filter(person_id=request.user.person.id).order_by('-dates').first()     
@@ -93,7 +100,16 @@ def person_edit(request):
         person = Person.objects.get(id=id) 
         my_person = person
         status = Status.objects.filter(person_id=id).order_by('-dates')     
-        my_status = Status.objects.filter(person_id=id).order_by('-dates').first()         
+        my_status = Status.objects.filter(person_id=id).order_by('-dates').first()  
+        # Получить список национальностей для словаря
+        nationality_list = Person.objects.order_by('nationality').values('nationality').distinct()
+        marital_status_list = Person.objects.order_by('marital_status').values('marital_status').distinct()
+        country_list = Person.objects.order_by('country').values('country').distinct()
+        city_list = Person.objects.order_by('city').values('city').distinct()
+        education_list = Person.objects.order_by('education').values('education').distinct()
+        eye_color_list = Person.objects.order_by('eye_color').values('eye_color').distinct()
+        hair_color_list = Person.objects.order_by('hair_color').values('hair_color').distinct()
+        body_type_list = Person.objects.order_by('body_type').values('body_type').distinct()
         if request.method == "POST":
             person.sex = request.POST.get("sex")
             person.birthday = request.POST.get("birthday")
@@ -122,12 +138,16 @@ def person_edit(request):
                 return render(request, "person/edit.html", {"form": personform})                
         else:
             # Загрузка начальных данных
+            print(body_type_list)
             personform = PersonForm(initial={'sex': person.sex, 'birthday': person.birthday.strftime('%Y-%m-%d'), 'nationality': person.nationality, 'marital_status': person.marital_status, 
                                              'amount_of_children': person.amount_of_children, 'phone_number': person.phone_number, 'email': person.email, 'country': person.country, 
                                              'city': person.city, 'education': person.education, 'occupation': person.occupation, 'interests': person.interests, 
                                              'eye_color': person.eye_color, 'hair_color': person.hair_color, 'body_type': person.body_type, 'height': person.height, 
-                                             'weight': person.weight, 'avatar': person.avatar })
-            return render(request, "person/edit.html", {"form": personform, "my_person": my_person,"my_status": my_status, "status": status,})
+                                             'weight': person.weight, 'avatar': person.avatar})
+            return render(request, "person/edit.html", {"form": personform, "my_person": my_person,"my_status": my_status, "status": status, 'nationality_list': nationality_list, 
+                                                        'marital_status_list': marital_status_list, 'country_list': country_list, 'city_list': city_list,
+                                                        'education_list': education_list, 'eye_color_list': eye_color_list, 'hair_color_list': hair_color_list,
+                                                       'body_type_list': body_type_list})
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
 
@@ -137,7 +157,10 @@ def person_read(request, id):
     # id текущего пользователя
     # id user текущего пользователя
     my_user_id = request.user.id
-    my_person_id = request.user.person.id
+    try:
+        my_person_id = request.user.person.id
+    except:
+        my_person_id = None
     try:
         person = Person.objects.get(id=id)
         # id пользователя котрому отправляется сообщение
@@ -164,6 +187,21 @@ def person_read(request, id):
             #return render(request, "person/read.html", {"person": person, "my_person": my_person, "my_status": my_status, "status_last": status_last, "message": message, "friend": friend, "my_friend": my_friend, "status": status, "photo": photo, "my_id": my_id, "person_id": id })
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Person not found</h2>")
+
+# Подтверждение персоны
+@login_required
+@group_required("Managers")
+def person_okay(request, id):
+    try:
+        person = Person.objects.get(id=id)
+        person.okay = True
+        person.save()
+        return HttpResponseRedirect(reverse('person_index'))
+    except Person.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
+    except Exception as exception:
+        print(exception)
+        return HttpResponse(exception)
 
 # Список для изменения с кнопками создать, изменить, удалить
 @login_required
@@ -288,6 +326,8 @@ def signup(request):
             person.country = "Казахстан"
             person.city = "Алматы"
             person.amount_of_children = 0
+            person.height = 0
+            person.weight = 0
             person.save()
             person = Person.objects.all().order_by("-id")[0]
             #print(person)

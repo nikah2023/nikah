@@ -5,9 +5,10 @@
 {% block header %}{% endblock header %}
 {% block content %}
 	<h2>{% trans "friends" %}</h2>
-	<table id="myTable" class="table-projects" >
+	<table id="myTable" >
 		<thead>
 			<tr>
+				<th></th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -26,6 +27,7 @@
 						<img style="width:100%; max-width:200px;" src="{% static 'images/woman.jpg' %}" alt="" title="">
 					{% endif %}						
 				</td>
+				<td><p></p></td>
 				<td>
 					<h5> <a href="{% url 'person_read' n.amigo_id %}"> {{ n.amigo }}</a>
 						{% if n.confirmation != True %} 	
@@ -44,6 +46,7 @@
 						<img style="width:100%; max-width:200px;" src="{% static 'images/woman.jpg' %}" alt="" title="">
 					{% endif %}							
 				</td>
+				<td><p></p></td>
 				<td>
 					<h5><a href="{% url 'person_read' n.person_id %}"> {{ n.person }}</a>
 						{% if n.confirmation != True %} 

@@ -10,7 +10,6 @@ from django.contrib.auth.forms import UserCreationForm
 from dateutil.relativedelta import relativedelta
 from django.utils import timezone
 
-
 # При разработке приложения, использующего базу данных, чаще всего необходимо работать с формами, которые аналогичны моделям.
 # В этом случае явное определение полей формы будет дублировать код, так как все поля уже описаны в модели.
 # По этой причине Django предоставляет вспомогательный класс, который позволит вам создать класс Form по имеющейся модели
@@ -23,18 +22,19 @@ class PersonForm(forms.ModelForm):
         fields = ('sex', 'birthday', 'nationality', 'marital_status', 'amount_of_children', 'phone_number', 'email', 'country', 'city', 'education',  'occupation', 'interests', 'eye_color', 'hair_color', 'body_type', 'height', 'weight', 'avatar')
         widgets = {
             'birthday': DateInput(attrs={"type":"date"}),
-            'nationality': TextInput(attrs={"size":"100"}),
-            'marital_status': TextInput(attrs={"size":"100"}),
+            'nationality': TextInput(attrs={"size":"100", "required list": "nationality_datalist", "autocomplete":"on" }),
+            'marital_status': TextInput(attrs={"size":"100", "required list": "marital_status_datalist", "autocomplete":"on" }),
             'amount_of_children': NumberInput(attrs={"size":"10"}),  
             'phone_number': TextInput(attrs={"size":"100", "type":"tel", "pattern": "+7-[0-9]{3}-[0-9]{3}-[0-9]{4}"}),
             'email': TextInput(attrs={"size":"100", "type":"email", "pattern": "[^@\s]+@[^@\s]+\.[^@\s]+"}),
-            'country': TextInput(attrs={"size":"100"}),
-            'city': TextInput(attrs={"size":"100"}),
-            'education': TextInput(attrs={"size":"100"}),
+            'country': TextInput(attrs={"size":"100", "required list": "country_datalist", "autocomplete":"on" }),
+            'city': TextInput(attrs={"size":"100", "required list": "city_datalist", "autocomplete":"on" }),
+            'education': TextInput(attrs={"size":"100", "required list": "education_datalist", "autocomplete":"on" }),
             'occupation': Textarea(attrs={'cols': 80, 'rows': 3}),            
             'interests': Textarea(attrs={'cols': 80, 'rows': 3}), 
-            'hair_color': TextInput(attrs={"size":"100"}),
-            'body_type': TextInput(attrs={"size":"100"}),
+            'eye_color': TextInput(attrs={"size":"100", "required list": "eye_color_datalist", "autocomplete":"on" }),
+            'hair_color': TextInput(attrs={"size":"100", "required list": "hair_color_datalist", "autocomplete":"on" }),
+            'body_type': TextInput(attrs={"size":"100", "required list": "body_type_datalist", "autocomplete":"on" }),
             'height': NumberInput(attrs={"size":"10"}),  
             'weight': NumberInput(attrs={"size":"10"}),              
         }
