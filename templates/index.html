@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load static %}
-{% block title %}{% trans "App name" %}{% endblock title %}
+{% block title %}{% trans "App Name" %}{% endblock title %}
 {% block header %}
 	
 {% endblock header %}
@@ -9,25 +9,22 @@
 <div class="jumbotron">
 	<div class="row justify-content-center;">
 		<div class="row" >
-			<div class="col-md-8" >	
+			{% if LANGUAGE_CODE == 'kk' %}
+				<h1>Сәлемдесу</h1>
+				<p>Қош келдіңіз мәтіні</p>			
+			{% else %}
 				<h1>Приветствие</h1>
-				<hr>
-				<h3>...</h3> 
-				<hr>
-				<p>✅ ...</p>
-				<p>✅ ...</p>
-				<p>✅ ...</p>
-				<p>✅ ...</p>
-				<p>✅ ...</p>
-			</div>								
-			<div class="col-md-4">
-				<img src="{% static 'images/jumbotron.jpg' %}" alt="student" style="width:100%; padding: 10px;">
-			</div>
+				<p>Текст приветствия</p>			
+			{% endif %}
+			<!-- <div class="col-md-8" >	 -->
+				<!-- <h1>Приветствие</h1> -->
+				
+			<!-- </div>								 -->
+			<!-- <div class="col-md-4"> -->
+				<!-- <img src="{% static 'images/jumbotron.jpg' %}" alt="student" style="width:100%; padding: 10px;"> -->
+			<!-- </div> -->
 		</div>			
 	</div>
-</div>
-<div class="div-button-left">
-	<button onclick="" class="btn btn-outline-info">{% trans "claim create" %}</button>	
 </div>
 <hr>
 <div class="div-width-100-text-center">

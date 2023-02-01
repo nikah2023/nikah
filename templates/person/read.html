@@ -8,7 +8,12 @@
 <div class="row justify-content-center">
 	<div class="card" style="width:100%">
 		<div class="card-header">	
-			<h4>{{ person.user.first_name }}</h4>			
+			<h4>
+				{{ person.user.first_name }}
+				{% if request.user.groups.all.0.name == "Managers"  %}
+					{{ person.user.last_name }}
+				{% endif %}
+			</h4>			
 			<h5><strong>{% trans "birthday" %}:</strong> {{ person.birthday | date:"d F" }}</h5>											
 		</div>
 		<div class="card-body">
@@ -16,9 +21,54 @@
 				<div class="col-md-9">
 					<p><strong>{% trans "nationality" %}:</strong> {{ person.nationality }}</p>
 					<p><strong>{% trans "marital_status" %}:</strong> {{ person.marital_status }}</p>
-					
 					<hr>
-					{% if request.user.groups.all.0.name != "Managers"  %}
+					{% if request.user.groups.all.0.name == "Managers"  %}
+						{% if person.amount_of_children != 0 %}
+							<p><strong>{% trans "amount_of_children" %}:</strong> {{ person.amount_of_children }}</p>
+						{% endif %}
+						{% if person.phone_number != None %}
+							<p><strong>{% trans "phone_number" %}:</strong> {{ person.phone_number }}</p>
+						{% endif %}
+						{% if person.email != None %}
+							<p><strong>{% trans "email" %}:</strong> {{ person.email }}</p>
+						{% endif %}
+						<p><strong>{% trans "country" %}:</strong> {{ person.country }}</p>
+						<p><strong>{% trans "city" %}:</strong> {{ person.city }}</p>
+						{% if person.education != None %}
+							<hr>																
+							<p><strong>{% trans "education" %}:</strong> {{ person.education }}</p>
+						{% endif %}
+						{% if person.occupation != None %}
+							<hr>																
+							<p><strong>{% trans "occupation" %}:</strong> {{ person.occupation }}</p>
+						{% endif %}
+						{% if person.interests != None %}
+							<hr>					
+							<p><strong>{% trans "interests" %}:</strong> {{ person.interests }}</p>
+						{% endif %}											
+						<hr>
+						<h5>{% trans "I look like?" %}</h5>											
+						{% if person.eye_color != None %}
+							<p><strong>{% trans "eye_color" %}:</strong> {{ person.eye_color }}</p>
+						{% endif %}
+						{% if person.hair_color != None %}
+							<p><strong>{% trans "hair_color" %}:</strong> {{ person.hair_color }}</p>
+						{% endif %}
+						{% if person.body_type != None %}
+							<p><strong>{% trans "body_type" %}:</strong> {{ person.body_type }}</p>
+						{% endif %}
+						{% if person.height != 0 %}
+							<p><strong>{% trans "height" %}:</strong> {{ person.height }}</p>
+						{% endif %}
+						{% if person.weight != 0 %}
+							<p><strong>{% trans "weight" %}:</strong> {{ person.weight }}</p>
+						{% endif %}
+						<hr>
+						<p><strong>{% trans "okay" %}</strong>: {{ person.okay }}</p>
+						{% if person.okay == False %}		
+							<p><a onclick="return confirm('{% trans "okay" %}?')" href="{% url 'person_okay' person.id %}">{% trans "person_okay" %}</a></p>
+						{% endif %}
+					{% else %}
 						{% if my_friend.count > 0 %}
 							{% for f in my_friend %}
 								{% if f.person_id == person_id or f.amigo_id == person_id %}
@@ -38,14 +88,19 @@
 											<p><strong>{% trans "country" %}:</strong> {{ person.country }}</p>
 											<p><strong>{% trans "city" %}:</strong> {{ person.city }}</p>
 											{% if person.education != None %}
+												<hr>																
 												<p><strong>{% trans "education" %}:</strong> {{ person.education }}</p>
 											{% endif %}
 											{% if person.occupation != None %}
+												<hr>																
 												<p><strong>{% trans "occupation" %}:</strong> {{ person.occupation }}</p>
 											{% endif %}
 											{% if person.interests != None %}
+												<hr>					
 												<p><strong>{% trans "interests" %}:</strong> {{ person.interests }}</p>
-											{% endif %}
+											{% endif %}											
+											<hr>
+											<h5>{% trans "I look like?" %}</h5>											
 											{% if person.eye_color != None %}
 												<p><strong>{% trans "eye_color" %}:</strong> {{ person.eye_color }}</p>
 											{% endif %}

@@ -63,6 +63,25 @@ def person_index(request):
 
 # Список для просмотра
 def person_list(request):
+    # Используется для поиска
+    country_search = ""
+    city_search = ""
+    marital_status_search = ""
+    nationality_search = ""
+    education_search = ""
+    eye_color_search = ""
+    hair_color_search = ""
+    body_type_search = ""
+    # Получить списки для словаря
+    country_list = Person.objects.filter(okay=True).order_by('country').values('country').distinct()
+    city_list = Person.objects.filter(okay=True).order_by('city').values('city').distinct()
+    marital_status_list = Person.objects.filter(okay=True).order_by('marital_status').values('marital_status').distinct()
+    nationality_list = Person.objects.filter(okay=True).order_by('nationality').values('nationality').distinct()
+    education_list = Person.objects.filter(okay=True).order_by('education').values('education').distinct()
+    eye_color_list = Person.objects.filter(okay=True).order_by('eye_color').values('eye_color').distinct()
+    hair_color_list = Person.objects.filter(okay=True).order_by('hair_color').values('hair_color').distinct()
+    body_type_list = Person.objects.filter(okay=True).order_by('body_type').values('body_type').distinct()
+    #
     my_person = None
     my_status = None
     friend = None
@@ -83,12 +102,44 @@ def person_list(request):
             person = Person.objects.filter(okay=True).exclude(id=person_id).order_by('?')
             friend = Friend.objects.filter(Q(person_id=person_id) | Q(amigo_id=person_id))
             my_person = request.user.person
-            my_status = Status.objects.filter(person_id=request.user.person.id).order_by('-dates').first()     
-            # Все друзья    
-            #friends_query = Friend.objects.all()
-            # Люди которые не с кем не дружат
-            #person_not_friends = Person.objects.exclude(id__in=friends_query)
-    return render(request, "person/list.html", {"person": person, "my_person": my_person, "my_status": my_status, "friend": friend, })
+            my_status = Status.objects.filter(person_id=request.user.person.id).order_by('-dates').first()                
+    # Применение фильтров
+    if request.method == "POST":
+        # Определить какая кнопка нажата
+        if 'searchBtn' in request.POST:
+            country_search = request.POST.get("country_search")
+            city_search = request.POST.get("city_search")
+            marital_status_search = request.POST.get("marital_status_search")
+            nationality_search = request.POST.get("nationality_search")
+            education_search = request.POST.get("education_search")
+            eye_color_search = request.POST.get("eye_color_search")
+            hair_color_search = request.POST.get("hair_color_search")
+            body_type_search = request.POST.get("body_type_search")
+            if country_search != "":
+                person = person.filter(country__contains=country_search)
+            if city_search != "":
+                person = person.filter(city__contains=city_search)
+            if marital_status_search != "":
+                person = person.filter(marital_status__contains=marital_status_search)
+            if nationality_search != "":
+                person = person.filter(nationality__contains=nationality_search)
+            if education_search != "":
+                person = person.filter(education__contains=education_search)
+            if eye_color_search != "":
+                person = person.filter(eye_color__contains=eye_color_search)
+            if hair_color_search != "":
+                person = person.filter(hair_color__contains=hair_color_search)
+            if body_type_search != "":
+                person = person.filter(body_type__contains=body_type_search)
+    return render(request, "person/list.html", {"person": person, "my_person": my_person, "my_status": my_status, "friend": friend,
+                                               "country_search": country_search, "country_list": country_list,
+                                               "city_search": city_search, "city_list": city_list, 
+                                               "marital_status_search": marital_status_search, "marital_status_list": marital_status_list,
+                                               "nationality_search": nationality_search, "nationality_list": nationality_list,
+                                               "education_search": education_search, "education_list": education_list,
+                                               "eye_color_search": eye_color_search, "eye_color_list": eye_color_list, 
+                                               "hair_color_search": hair_color_search, "hair_color_list": hair_color_list,
+                                               "body_type_search": body_type_search, "body_type_list": body_type_list})
 
 # Функция edit выполняет редактирование объекта.
 # Функция в качестве параметра принимает идентификатор объекта в базе данных.
@@ -101,7 +152,7 @@ def person_edit(request):
         my_person = person
         status = Status.objects.filter(person_id=id).order_by('-dates')     
         my_status = Status.objects.filter(person_id=id).order_by('-dates').first()  
-        # Получить список национальностей для словаря
+        # Получить списки для словаря
         nationality_list = Person.objects.order_by('nationality').values('nationality').distinct()
         marital_status_list = Person.objects.order_by('marital_status').values('marital_status').distinct()
         country_list = Person.objects.order_by('country').values('country').distinct()

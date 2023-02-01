@@ -13,8 +13,8 @@
 	--card-background-color-light: Thistle;
 	--card-background-color-dark: Plum;
 	--card-text-color: Gold;
-	--table-background-color-light: LightCyan; 
-	--table-background-color-dark: PaleTurquoise; 
+	--table-background-color-light: Thistle; 
+	--table-background-color-dark: Plum; 
 	--table-text-color: DarkRed;	
 	/* Звездочки в оценке */
 	--star-size: 30px;
@@ -78,6 +78,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 p, ul, li, label {	
 	color: var(--main-text-color);	
+}
+hr {	
+	background-color: var(--main-header-color);
 }
 pre {
 	color:  var(--main-header-color);	
@@ -424,10 +427,10 @@ pre {
 	vertical-align: top;
 }
 .table-manager tbody tr:nth-child(odd){
-	background: var(--main-background-color-light);
+	background: var(--table-background-color-light);
 }
 .table-manager tbody tr:nth-child(even){
-	background: var(--main-background-color-dark);
+	background: var(--table-background-color-dark);
 }
 .table-manager tbody tr td:first-child {
 	border-radius: 2px 0 0 2px;

@@ -33,15 +33,20 @@
 					{% endif %}
 					<p><strong>{% trans "country" %}:</strong> {{ person.country }}</p>
 					<p><strong>{% trans "city" %}:</strong> {{ person.city }}</p>
+					<hr>																
 					{% if person.education != None %}
 						<p><strong>{% trans "education" %}:</strong> {{ person.education }}</p>
 					{% endif %}
+					<hr>
 					{% if person.occupation != None %}
 						<p><strong>{% trans "occupation" %}:</strong> {{ person.occupation }}</p>
 					{% endif %}
+					<hr>
 					{% if person.interests != None %}
 						<p><strong>{% trans "interests" %}:</strong> {{ person.interests }}</p>
 					{% endif %}
+					<hr>
+					<h5>{% trans "I look like?" %}</h5>											
 					{% if person.eye_color != None %}
 						<p><strong>{% trans "eye_color" %}:</strong> {{ person.eye_color }}</p>
 					{% endif %}
