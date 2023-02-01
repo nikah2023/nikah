@@ -1,4 +1,4 @@
-from sched import scheduler
+#from sched import scheduler
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
