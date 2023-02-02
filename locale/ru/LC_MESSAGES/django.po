@@ -1,0 +1,515 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-02 15:16+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
+"100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\marriage\forms.py:47
+msgid "Minimum age 16 years old"
+msgstr "Минимальный возраст 16 лет"
+
+#: .\marriage\forms.py:49
+msgid "Wrong date and time format"
+msgstr "Неправильный формат даты и времени"
+
+#: .\marriage\forms.py:58
+msgid "Height must be greater than zero"
+msgstr "Рост должен быть больше нуля"
+
+#: .\marriage\forms.py:61
+msgid "Height should not be less than 50 or more than 300"
+msgstr "Рост не должна быть меньше 50 и больше 300."
+
+#: .\marriage\forms.py:70
+msgid "Weight must be greater than zero"
+msgstr "Вес должен быть больше нуля"
+
+#: .\marriage\forms.py:73
+msgid "Weight should not be less than 20 or more than 300"
+msgstr "Вес не должен быть меньше 20 и больше 300"
+
+#: .\marriage\models.py:40 .\templates\person\index.html:14
+msgid "sex"
+msgstr "Пол (М/Ж)"
+
+#: .\marriage\models.py:41 .\templates\cabinet.html:22
+#: .\templates\person\index.html:15 .\templates\person\read.html:17
+msgid "birthday"
+msgstr "Дата рождения"
+
+#: .\marriage\models.py:42 .\templates\cabinet.html:23
+#: .\templates\person\list.html:56 .\templates\person\read.html:22
+msgid "nationality"
+msgstr ""
+
+#: .\marriage\models.py:43 .\templates\cabinet.html:24
+#: .\templates\person\list.html:43 .\templates\person\read.html:23
+msgid "marital_status"
+msgstr "Семейное положение"
+
+#: .\marriage\models.py:44 .\templates\cabinet.html:26
+#: .\templates\person\read.html:27 .\templates\person\read.html:80
+msgid "amount_of_children"
+msgstr "Количество детей"
+
+#: .\marriage\models.py:45 .\templates\cabinet.html:29
+#: .\templates\person\read.html:30 .\templates\person\read.html:83
+msgid "phone_number"
+msgstr "Номер телефона"
+
+#: .\marriage\models.py:46 .\templates\cabinet.html:32
+#: .\templates\person\read.html:33 .\templates\person\read.html:86
+msgid "email"
+msgstr "Email"
+
+#: .\marriage\models.py:47 .\templates\cabinet.html:34
+#: .\templates\person\list.html:17 .\templates\person\list.html:166
+#: .\templates\person\read.html:35 .\templates\person\read.html:88
+msgid "country"
+msgstr "Страна"
+
+#: .\marriage\models.py:48 .\templates\cabinet.html:35
+#: .\templates\person\index.html:16 .\templates\person\list.html:30
+#: .\templates\person\list.html:167 .\templates\person\read.html:36
+#: .\templates\person\read.html:89
+msgid "city"
+msgstr "Город"
+
+#: .\marriage\models.py:49 .\templates\cabinet.html:38
+#: .\templates\person\list.html:72 .\templates\person\read.html:39
+#: .\templates\person\read.html:92
+msgid "education"
+msgstr "Образование"
+
+#: .\marriage\models.py:50
+msgid "person_occupation"
+msgstr "Род деятельности"
+
+#: .\marriage\models.py:51
+msgid "person_interests"
+msgstr "Интересы"
+
+#: .\marriage\models.py:52 .\templates\cabinet.html:51
+#: .\templates\person\list.html:85 .\templates\person\read.html:52
+#: .\templates\person\read.html:105
+msgid "eye_color"
+msgstr "Цвет глаз"
+
+#: .\marriage\models.py:53 .\templates\cabinet.html:54
+#: .\templates\person\list.html:98 .\templates\person\read.html:55
+#: .\templates\person\read.html:108
+msgid "hair_color"
+msgstr "Цвет волос"
+
+#: .\marriage\models.py:54 .\templates\cabinet.html:57
+#: .\templates\person\list.html:111 .\templates\person\read.html:58
+#: .\templates\person\read.html:111
+msgid "body_type"
+msgstr "Сложение тела"
+
+#: .\marriage\models.py:55 .\templates\cabinet.html:60
+#: .\templates\person\read.html:61 .\templates\person\read.html:114
+msgid "height"
+msgstr "Рост"
+
+#: .\marriage\models.py:56 .\templates\cabinet.html:63
+#: .\templates\person\read.html:64 .\templates\person\read.html:117
+msgid "weight"
+msgstr "Вес"
+
+#: .\marriage\models.py:58
+msgid "avatar"
+msgstr "Фото профиля"
+
+#: .\marriage\models.py:81
+msgid "datep"
+msgstr ""
+
+#: .\marriage\models.py:82
+msgid "snapshot"
+msgstr ""
+
+#: .\marriage\models.py:83
+msgid "title_photo"
+msgstr ""
+
+#: .\marriage\models.py:98 .\templates\friend\index.html:12
+msgid "datef"
+msgstr "Дата"
+
+#: .\marriage\models.py:99 .\templates\friend\index.html:15
+msgid "confirmation"
+msgstr "Подтверждение"
+
+#: .\marriage\models.py:116 .\templates\status\index.html:12
+msgid "dates"
+msgstr "Дата"
+
+#: .\marriage\models.py:117
+msgid "title_status"
+msgstr "Текст статуса"
+
+#: .\marriage\models.py:132 .\templates\message\index.html:12
+msgid "datem"
+msgstr "Дата"
+
+#: .\marriage\models.py:135
+msgid "message_details"
+msgstr "Сообщение"
+
+#: .\templates\base.html:37 .\templates\index.html:4
+#: .\templates\registration\logged_out.html:4
+#: .\templates\registration\login.html:4
+#: .\templates\registration\password_change_done.html:3
+#: .\templates\registration\password_change_form.html:3
+#: .\templates\registration\password_reset_complete.html:4
+#: .\templates\registration\password_reset_confirm.html:4
+#: .\templates\registration\password_reset_done.html:4
+#: .\templates\registration\password_reset_form.html:4
+#: .\templates\registration\register_done.html:4
+msgid "App Name"
+msgstr "Nikah-Kazakhstan"
+
+#: .\templates\base.html:44 .\templates\index.html:31
+#: .\templates\person\list.html:135
+msgid "Persons"
+msgstr "Персоны"
+
+#: .\templates\base.html:49
+msgid "Friends"
+msgstr "Друзья"
+
+#: .\templates\base.html:52
+msgid "cabinet"
+msgstr "Личный кабинет"
+
+#: .\templates\base.html:61 .\templates\person\index.html:3
+#: .\templates\person\index.html:6 .\templates\person\list.html:4
+#: .\templates\person\list.html:7
+msgid "persons"
+msgstr "Персоны"
+
+#: .\templates\base.html:62 .\templates\message\index.html:3
+#: .\templates\message\index.html:6
+msgid "messages"
+msgstr "Сообщения"
+
+#: .\templates\base.html:63 .\templates\friend\index.html:3
+#: .\templates\friend\index.html:6 .\templates\friend\list.html:4
+#: .\templates\friend\list.html:7
+msgid "friends"
+msgstr "Друзья"
+
+#: .\templates\base.html:68 .\templates\cabinet.html:9
+#: .\templates\registration\my_account.html:4
+#: .\templates\registration\my_account.html:10
+msgid "My account"
+msgstr "Моя учетная запись"
+
+#: .\templates\base.html:69 .\templates\cabinet.html:11
+#: .\templates\registration\password_change_form.html:9
+#: .\templates\registration\password_change_form.html:15
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: .\templates\base.html:71
+msgid "Log out"
+msgstr "Выйти"
+
+#: .\templates\base.html:76
+msgid "Log In"
+msgstr "Войти"
+
+#: .\templates\base.html:77 .\templates\registration\signup.html:4
+#: .\templates\registration\signup.html:10
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: .\templates\cabinet.html:17 .\templates\person\edit.html:3
+#: .\templates\status\edit.html:3
+msgid "Change"
+msgstr "Изменить"
+
+#: .\templates\cabinet.html:42 .\templates\person\read.html:43
+#: .\templates\person\read.html:96
+msgid "occupation"
+msgstr "Род деятельности"
+
+#: .\templates\cabinet.html:46 .\templates\person\read.html:47
+#: .\templates\person\read.html:100
+#, fuzzy
+#| msgid "person_interests"
+msgid "interests"
+msgstr "Интересы"
+
+#: .\templates\cabinet.html:49 .\templates\person\read.html:50
+#: .\templates\person\read.html:103
+msgid "I look like?"
+msgstr "Как я выгляжу?"
+
+#: .\templates\cabinet.html:79 .\templates\person\index.html:12
+msgid "user"
+msgstr "Пользователь"
+
+#: .\templates\contact.html:8
+msgid "contacts"
+msgstr "Контакты"
+
+#: .\templates\friend\index.html:13 .\templates\friend\index.html:14
+#: .\templates\person\read.html:7 .\templates\status\index.html:13
+msgid "person"
+msgstr "Персона"
+
+#: .\templates\friend\index.html:41 .\templates\message\index.html:41
+#: .\templates\status\create.html:3
+msgid "Create"
+msgstr "Создать"
+
+#: .\templates\friend\list.html:34
+msgid "Waiting for confirmation"
+msgstr "Ожидание подтверждения"
+
+#: .\templates\friend\list.html:53
+msgid "Confirm Friendship"
+msgstr "Подтвердить дружбу"
+
+#: .\templates\message\index.html:13
+msgid "source"
+msgstr "Отправитель"
+
+#: .\templates\message\index.html:14
+msgid "recipient"
+msgstr "Получатель"
+
+#: .\templates\message\index.html:15
+msgid "details"
+msgstr "Сообщение"
+
+#: .\templates\person\edit.html:6
+msgid "Person"
+msgstr "Персона"
+
+#: .\templates\person\edit.html:88 .\templates\status\create.html:13
+#: .\templates\status\edit.html:13
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\templates\person\edit.html:89 .\templates\person\read.html:184
+#: .\templates\status\create.html:14 .\templates\status\edit.html:14
+#: .\templates\status\read.html:19
+msgid "Back"
+msgstr "Назад"
+
+#: .\templates\person\edit.html:92 .\templates\status\index.html:3
+#: .\templates\status\index.html:6 .\templates\status\list.html:3
+#: .\templates\status\list.html:6
+msgid "statuss"
+msgstr "Статусы"
+
+#: .\templates\person\edit.html:98 .\templates\person\edit.html:123
+#: .\templates\person\index.html:51 .\templates\status\index.html:36
+#: .\templates\status\list.html:7
+msgid "Add"
+msgstr "Добавить"
+
+#: .\templates\person\edit.html:113 .\templates\status\list.html:28
+msgid "Delete"
+msgstr "Удалить"
+
+#: .\templates\person\index.html:13
+msgid "fio"
+msgstr "ФИО"
+
+#: .\templates\person\index.html:28 .\templates\person\index.html:30
+#: .\templates\person\read.html:67
+msgid "okay"
+msgstr "Анекта подтверждена (да/нет)"
+
+#: .\templates\person\index.html:30
+msgid "person_okay"
+msgstr "Анекта подтверждена"
+
+#: .\templates\person\index.html:43
+msgid "View"
+msgstr "Просмотреть"
+
+#: .\templates\person\list.html:11 .\templates\person\list.html:126
+msgid "Search"
+msgstr "Поиск"
+
+#: .\templates\person\list.html:127
+msgid "Reset"
+msgstr "Сброс"
+
+#: .\templates\person\list.html:155 .\templates\person\read.html:77
+msgid "You are friends"
+msgstr "Вы друзья"
+
+#: .\templates\person\list.html:157 .\templates\person\read.html:121
+msgid "Unverified friend"
+msgstr "Неподтвержденный друг"
+
+#: .\templates\person\read.html:4 .\templates\status\read.html:3
+msgid "Read"
+msgstr "Прочитать"
+
+#: .\templates\person\read.html:69
+msgid "Confirm_the_profile"
+msgstr "Подтвердить анкету"
+
+#: .\templates\person\read.html:131
+msgid "Be friends"
+msgstr "Подружиться"
+
+#: .\templates\person\read.html:150
+msgid "Messages"
+msgstr "Сообщения"
+
+#: .\templates\person\read.html:161
+msgid "Send"
+msgstr "Отправить"
+
+#: .\templates\registration\logged_out.html:6
+msgid "Logged out!"
+msgstr "Вы вышли!"
+
+#: .\templates\registration\logged_out.html:7
+msgid "Login again"
+msgstr "Войти снова"
+
+#: .\templates\registration\login.html:7
+msgid "Incorrect login or password"
+msgstr "Неверный логин или пароль"
+
+#: .\templates\registration\login.html:12
+msgid "You dont have access"
+msgstr "У вас нет доступа"
+
+#: .\templates\registration\login.html:14
+msgid "Login to see this page"
+msgstr "Войдите, чтобы увидеть эту страницу"
+
+#: .\templates\registration\login.html:22
+msgid "Authorization"
+msgstr "Авторизация"
+
+#: .\templates\registration\login.html:27
+msgid "Login"
+msgstr "Войти"
+
+#: .\templates\registration\login.html:33
+msgid "Lost password?"
+msgstr "Забыли пароль?"
+
+#: .\templates\registration\login.html:34
+#: .\templates\registration\signup.html:15
+msgid "Create an account"
+msgstr "Завести аккаунт"
+
+#: .\templates\registration\my_account.html:15
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: .\templates\registration\password_change_done.html:5
+msgid "Password changed"
+msgstr "Пароль изменен"
+
+#: .\templates\registration\password_reset_complete.html:6
+msgid "Password reset completed!"
+msgstr "Сброс пароля завершен!"
+
+#: .\templates\registration\password_reset_complete.html:7
+msgid "Log in again?"
+msgstr "Войти снова?"
+
+#: .\templates\registration\password_reset_confirm.html:5
+#: .\templates\registration\password_reset_confirm.html:12
+msgid "Password reset confirmation"
+msgstr "Подтверждение сброса пароля"
+
+#: .\templates\registration\password_reset_confirm.html:18
+#: .\templates\registration\password_reset_form.html:10
+#: .\templates\registration\password_reset_form.html:16
+msgid "Reset password"
+msgstr "Сброс пароля"
+
+#: .\templates\registration\password_reset_confirm.html:26
+msgid "Please enter (and confirm) your new password."
+msgstr "Пожалуйста, введите (и подтвердите) новый пароль."
+
+#: .\templates\registration\password_reset_confirm.html:32
+msgid "New password:"
+msgstr "Новый пароль:"
+
+#: .\templates\registration\password_reset_confirm.html:37
+msgid "Confirm password:"
+msgstr "Подтвердить пароль:"
+
+#: .\templates\registration\password_reset_confirm.html:48
+msgid "Password reset failed"
+msgstr "Не удалось сбросить пароль"
+
+#: .\templates\registration\password_reset_confirm.html:49
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr ""
+"Ссылка для сброса пароля недействительна, возможно, из-за того, что "
+"использовано. Пожалуйста, запросите новый сброс пароля."
+
+#: .\templates\registration\password_reset_done.html:6
+msgid "Password reset"
+msgstr "Сброс пароля"
+
+#: .\templates\registration\password_reset_done.html:7
+msgid "Check your email"
+msgstr "Проверьте свою электронную почту"
+
+#: .\templates\registration\password_reset_email.html:2
+msgid "Asked password reset email"
+msgstr "Электронная почта для сброса пароля"
+
+#: .\templates\registration\password_reset_email.html:2
+msgid "Follow the link below:"
+msgstr "Перейдите по ссылке ниже:"
+
+#: .\templates\registration\register_done.html:10
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: .\templates\registration\register_done.html:11
+msgid "Your account has been successfully created."
+msgstr "Ваша учетная запись успешно создана."
+
+#: .\templates\registration\register_done.html:11
+#: .\templates\registration\signup.html:20
+msgid "Log in"
+msgstr "Войти"
+
+#: .\templates\registration\signup.html:20
+msgid "Already have an account?"
+msgstr "У вас уже есть аккаунт?"
+
+#: .\templates\status\create.html:6 .\templates\status\edit.html:6
+#: .\templates\status\read.html:6
+msgid "status"
+msgstr "Статус"
+
+#: .\templates\status\index.html:14
+msgid "title"
+msgstr "Текст"

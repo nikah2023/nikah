@@ -27,7 +27,7 @@
 					<p>{{ n.user.first_name }} {{ n.user.last_name }}</p>
 					<p><strong>{% trans "okay" %}</strong>: {{ n.okay }}</p>
 					{% if n.okay == False %}		
-						<p><a onclick="return confirm('{% trans "okay" %}?')" href="{% url 'person_okay' n.id %}">{% trans "person_okay" %}</a></p>
+						<p><a onclick="return confirm('{% trans "Confirm_the_profile" %}?')" href="{% url 'person_okay' n.id %}">{% trans "Confirm_the_profile" %}</a></p>
 					{% endif %}
 				</td>
 				<td>

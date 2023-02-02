@@ -16,7 +16,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 	
-	<!-- Bootstrap CSS, JavaScript. Точнее - им требуются jQuery, Popper.js 
+	<!-- Bootstrap CSS, JavaScript. Точнее - им требуются jQuery, Popper.js
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" crossorigin="anonymous">
 	<script defer src="{% static 'js/popper.min.js' %}"  crossorigin="anonymous"></script>
 	<script defer src="{% static 'js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
@@ -41,7 +41,7 @@
 			<div class="collapse navbar-collapse" id="mainMenu">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'person_list' %}">{% trans "Person" %}</a>
+						<a class="nav-link" href="{% url 'person_list' %}">{% trans "Persons" %}</a>
 					</li>				
 					{% if user.is_authenticated %}	
 						{% if request.user.groups.all.0.name != "Managers"  %}
@@ -107,7 +107,6 @@
 </footer>
 <!-- Пагинация таблиц (Постраничный вывод) https://datatables.net/ -->
 <script src="{% static 'js/datatables.js' %}"></script>
-
 <!--
 <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
 <script src= "{% static 'js/jquery.dataTables.min.js' %}"></script>
